@@ -1,6 +1,6 @@
 # TP d'entrainement du cours PHP
 
-TP proposés par Openclassrooms
+TP proposés par Openclassrooms du cours PHP
 
 1er TP : création d'un minichat
 
