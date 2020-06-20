@@ -21,7 +21,8 @@ catch (Exception $e)
 $reponse = $bdd -> prepare('INSERT INTO minichat (pseudo, message) VALUES (?, ?)');
 $req = $reponse -> execute(array($_POST['pseudo'], $_POST['message']));
 
-
+// Redirection vers minichat.php
+header('Location: minichat.php');
 
 ?>
 
