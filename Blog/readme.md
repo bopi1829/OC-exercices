@@ -11,3 +11,6 @@ Pré-requis :
 - utilisation de fonctions SQL ;
 - manipulation des dates en SQL.
 
+Objectifs :
+Un système de blog avec des commentaires.
+Réaliser l'affichage de base d'un blog et des commentaires associés aux billets.
