@@ -22,6 +22,15 @@
 		die ('Erreur : ' .$e -> getMessage());
 	}
 
+	// Récupération des 10 derniers messages
+	$reponse = $bdd -> query('SELECT pseudo, message FROM minichat ORDER BY ID DESC LIMIT 1, 10');
+	while ($donnees  = $reponse -> fetch())
+	{
+		echo '<p><strong>' . $donnees['pseudo'] . '</strong> : ' . $donnees['message'] . '</p>';
+	}
+	
+	$reponse -> closeCursor();
+
 ?>
 
 </body>
