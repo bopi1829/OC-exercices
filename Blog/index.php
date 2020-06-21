@@ -20,8 +20,18 @@
     {
     	die ('Erreur : ' . $e -> getMessage());
     }
-    
-
     ?>
+
+    <div class="news">
+    <?php
+    // Insertion des billets
+    $reponse = $bdd -> query('SELECT * FROM billets ORDER BY date_creation DESC LIMIT 0, 10');
+    while ($donnees = $reponse -> fetch())
+    {
+    	echo '<h3>' . $donnees['titre'] . ' le ' . $donnees['date_creation'] . '</h3>';
+    	echo '<p>' . $donnees['contenu'] . '</br><a href="commentaires.php">Commentaires</a></p>';    
+    }
+    ?>
+   	</div>  
     </body>
 </html>

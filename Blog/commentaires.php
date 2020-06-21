@@ -21,6 +21,8 @@
     	die ('Erreur : ' . $e -> getMessage());
     }
 
+    //
+
     	?>
     </body>
 </html>
