@@ -20,9 +20,16 @@
     {
     	die ('Erreur : ' . $e -> getMessage());
     }
+    ?>
 
-    //
+    <div class="news">
 
-    	?>
+   <?php
+    // Affichage du billet et de ses commentaires
+
+
+   	?>
+   </div>
+    	
     </body>
 </html>
