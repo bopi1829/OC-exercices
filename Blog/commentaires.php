@@ -26,6 +26,7 @@
 
    <?php
     // Affichage du billet et de ses commentaires
+    
 
 
    	?>

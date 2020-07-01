@@ -33,7 +33,7 @@
         ?>
         <p>
         <?php echo htmlspecialchars($donnees['contenu']) . '<br/>'; ?>
-        <em><a href="commentaires.php">Commentaires</a></em>;
+        <em><a href="commentaires.php">Commentaires</a></em>
         </p>
         <?php
 
