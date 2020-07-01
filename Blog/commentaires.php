@@ -26,7 +26,7 @@
 
    <?php
     // Affichage du billet et de ses commentaires
-    
+    include 'afficheBillet.php';
 
 
    	?>
