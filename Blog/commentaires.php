@@ -10,27 +10,34 @@
     	<h1>Mon super blog !</h1>
     	<a href="index.php">Retour à la liste des billets</a>
 
-    	<?php
-    	// Connexion à la base de données
-    	try
+        <?php
+    // Connexion à la base de données
+    try
     {
-    	$bdd = new PDO('mysql:host=localhost;dbname=test' . ';port=' . 3308, 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $bdd = new PDO('mysql:host=localhost;dbname=test' . ';port=' . 3308, 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     }
     catch (Exception $e)
     {
-    	die ('Erreur : ' . $e -> getMessage());
+        die ('Erreur : ' . $e -> getMessage());
     }
     ?>
-
+    	
     <div class="news">
 
    <?php
     // Affichage du billet et de ses commentaires
-    include 'afficheBillet.php';
+   $req = $bdd -> query('SELECT titre, contenu, date_creation FROM billets');
+   $donnees = $req -> fetch(); {
+        echo '<h3>' . htmlspecialchars($donnees['titre']) . ' <em>le ' . htmlspecialchars($donnees['date_creation']) . '</em></h3>'; ?>
+        <p>
+        <?php echo htmlspecialchars($donnees['contenu']) . '<br/>'; ?>
+        </p>
+    <?php
+    $req -> closeCursor();
+}
+?>
+    
 
-
-   	?>
-   </div>
     	
-    </body>
+</body>
 </html>
