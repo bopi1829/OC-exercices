@@ -8,7 +8,7 @@
     <body>
 
     <h1>Mon super blog !</h1>
-    <p>Dix derniers billets du blog :</p>
+    <p>Derniers billets du blog :</p>
 
     <?php
     // Connexion à la base de données
@@ -27,17 +27,21 @@
     <?php
 
     // Insertion des billets
-    $reponse = $bdd -> query('SELECT * FROM billets ORDER BY date_creation DESC LIMIT 0, 10');
-    while ($donnees = $reponse -> fetch())
-    {
-    	echo '<h3>' . $donnees['titre'] . ' le ' . $donnees['date_creation'] . '</h3>';
-    	echo '<p>' . $donnees['contenu'] . '</br><a href="commentaires.php">Commentaires</a></p>';    
-    }
+    $req = $bdd -> query('SELECT titre, contenu, date_creation FROM billets ORDER BY date_creation DESC');
+    while ($donnees = $req -> fetch()) {
+        echo '<h3>' . htmlspecialchars($donnees['titre']) . ' <em>le ' . htmlspecialchars($donnees['date_creation']) . '</em></h3>';
+        ?>
+        <p>
+        <?php echo htmlspecialchars($donnees['contenu']) . '<br/>'; ?>
+        <em><a href="commentaires.php">Commentaires</a></em>;
+        </p>
+        <?php
 
-    $reponse -> closeCursor();
+        }
 
+    $req -> closeCursor();
     ?>
-   	</div>  
+   	
    	
     </body>
 </html>
