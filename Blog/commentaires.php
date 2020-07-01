@@ -25,7 +25,8 @@
     <div class="news">
 
    <?php
-    // Affichage du billet et de ses commentaires
+    // Affichage d'un billet
+
    $req = $bdd -> query('SELECT titre, contenu, date_creation FROM billets');
    $donnees = $req -> fetch(); {
         echo '<h3>' . htmlspecialchars($donnees['titre']) . ' <em>le ' . htmlspecialchars($donnees['date_creation']) . '</em></h3>'; ?>
@@ -36,8 +37,27 @@
     $req -> closeCursor();
 }
 ?>
-    
+    </div>
 
+    <div class="commentaires">
+    <p style="font-weight: bold;
+    font-size: 1.2em;">Commentaires</p>
+    </div>
+
+    <?php
+    // Affichage des commentaires du billet
+
+    $req = $bdd -> query('SELECT auteur, commentaire, date_commentaire FROM commentaires ORDER BY date_commentaire DESC');
+    while ($donnees = $req -> fetch())
+    {
+        ?>
+        <p><strong><?php echo $donnees['auteur'] ?></strong> le <?php echo $donnees['date_commentaire'] ?> </p>
+        <p><?php echo $donnees['commentaire'] ?></p>
+    <?php
+    $req -> closeCursor();
+    }
+
+    ?>
     	
 </body>
 </html>
