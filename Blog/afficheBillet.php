@@ -7,10 +7,6 @@
     	die ('Erreur : ' . $e -> getMessage());
     }
 }
-
-?>
-
-<?php
 	
 	function afficherBillet ($id) {
 		$con = getDatabaseConnexion();
