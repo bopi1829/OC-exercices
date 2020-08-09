@@ -20,44 +20,37 @@
     {
         die ('Erreur : ' . $e -> getMessage());
     }
+
+    // Récupération du billet
+    $req = $bdd->prepare ('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billets WHERE id = ? ');
+    $req->execute(array($_GET['billet']));
+    $donnees = $req->fetch();
     ?>
-    	
     <div class="news">
-
-   <?php
-    // Affichage d'un billet
-
-   $req = $bdd -> query('SELECT titre, contenu, date_creation FROM billets');
-   $donnees = $req -> fetch(); {
-        echo '<h3>' . htmlspecialchars($donnees['titre']) . ' <em>le ' . htmlspecialchars($donnees['date_creation']) . '</em></h3>'; ?>
+        <h3>
+            <?php echo htmlspecialchars($donnees['titre']); ?>
+            <em>le <?php echo $donnees['date_creation_fr']; ?></em>
+        </h3>
         <p>
-        <?php echo htmlspecialchars($donnees['contenu']) . '<br/>'; ?>
+            <?php echo nl2br(htmlspecialchars($donnees['contenu'])); ?>
         </p>
-    <?php
-    $req -> closeCursor();
-}
-?>
     </div>
 
-    <div class="commentaires">
-    <p style="font-weight: bold;
-    font-size: 1.2em;">Commentaires</p>
-    </div>
-
+    <h2>Commentaires</h2>
     <?php
-    // Affichage des commentaires du billet
+    $req->closeCursor();
 
-    $req = $bdd -> query('SELECT auteur, commentaire, date_commentaire FROM commentaires ORDER BY date_commentaire DESC');
-    while ($donnees = $req -> fetch())
+    $req = $bdd->prepare('SELECT auteur, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire_fr FROM commentaires WHERE id_billet = ? ORDER BY date_commentaire');
+    $req->execute(array($_GET['billet']));
+
+    while ($donnees = $req->fetch())
     {
-        ?>
-        <p><strong><?php echo $donnees['auteur'] ?></strong> le <?php echo $donnees['date_commentaire'] ?> </p>
-        <p><?php echo $donnees['commentaire'] ?></p>
-    <?php
-    $req -> closeCursor();
-    }
-
     ?>
-    	
-</body>
+    <p><strong><?php echo htmlspecialchars($donnees['auteur']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
+    <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
+    <?php
+    }
+    $req->closeCursor();
+    ?>
+    </body>
 </html>
