@@ -14,11 +14,11 @@
     // Connexion à la base de données
     try
     {
-    	$bdd = new PDO('mysql:host=localhost;dbname=test' . ';port=' . 3308, 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
     }
-    catch (Exception $e)
+    catch(Exception $e)
     {
-    	die ('Erreur : ' . $e -> getMessage());
+            die('Erreur : '.$e->getMessage());
     }
 
     //Affichage des billets
@@ -42,5 +42,6 @@
     }
     $req->closeCursor();
     ?>
+
     </body>
 </html>

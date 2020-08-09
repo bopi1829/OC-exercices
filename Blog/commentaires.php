@@ -11,6 +11,7 @@
     	<a href="index.php">Retour à la liste des billets</a>
 
         <?php
+
     // Connexion à la base de données
     try
     {
@@ -52,5 +53,6 @@
     }
     $req->closeCursor();
     ?>
+
     </body>
 </html>
