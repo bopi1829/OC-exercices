@@ -25,23 +25,19 @@
     <div class="news">
 
     <?php
-
     // Insertion des billets
-    $req = $bdd -> query('SELECT titre, contenu, date_creation FROM billets ORDER BY date_creation DESC');
+    $req = $bdd -> query('SELECT titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billets ORDER BY date_creation DESC LIMIT 0, 5');
     while ($donnees = $req -> fetch()) {
-        echo '<h3>' . htmlspecialchars($donnees['titre']) . ' <em>le ' . htmlspecialchars($donnees['date_creation']) . '</em></h3>';
+        echo '<h3>' . htmlspecialchars($donnees['titre']) . ' <em>le ' . $donnees['date_creation_fr'] . '</em></h3>';
         ?>
         <p>
         <?php echo htmlspecialchars($donnees['contenu']) . '<br/>'; ?>
-        <em><a href="commentaires.php">Commentaires</a></em>
+        <em><a href="commentaires.php?billet=<?php echo $donnees['id']; ?>">Commentaires</a></em>
         </p>
         <?php
-
         }
-
     $req -> closeCursor();
     ?>
-   	
    	
     </body>
 </html>
