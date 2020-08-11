@@ -33,12 +33,12 @@
             <p>
             <?php echo nl2br(htmlspecialchars($donnees['contenu'])); ?>
             <br/>
-            <em><a href="commentaires.php?=billet=<?php echo $donnees['id']; ?>">Commentaires</a></em>
+            <em><a href="commentaires.php?billet=<?php echo $donnees['id']; ?>">Commentaires</a></em>
             </p>
             </div>
             <?php
         }
-
+        $req->closeCursor();
         ?>
     </body>
 </html>
