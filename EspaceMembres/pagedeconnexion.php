@@ -9,5 +9,7 @@
 </head>
     <body>
         
+        <h1>Déconnexion</h1>
+
     </body>
 </html>
